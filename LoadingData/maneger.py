@@ -15,7 +15,7 @@ class main:
         data = json.loads(data)
         publisher = KafkaPublisher(bootstrap_servers=[os.getenv("LOCAL_HOST")], serializer="json")
         for item in data:
-            publisher.publish("File_data", item)
+            publisher.publish(os.getenv("TOPIC"), item)
             print(item)
         publisher.close()
 
