@@ -1,5 +1,6 @@
 from Receiving_data import send_info_data
 from kafka import KafkaProducer
+
 import json
 
 
@@ -18,7 +19,7 @@ class KafkaPublisher:
             topic,
             value=message
         )
-        record_metadata = future.get(timeout=10)
+        record_metadata = future.get(timeout=1)
         print(f"[KafkaPublisher] Sent to {record_metadata.topic}, "
               f"partition {record_metadata.partition}, offset {record_metadata.offset}")
     def close(self):

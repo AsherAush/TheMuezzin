@@ -1,6 +1,9 @@
 from Receiving_data import send_info_data
 from publish_kafka import KafkaPublisher
+import os
+from dotenv import load_dotenv
 import  json
+load_dotenv()
 
 class main:
     def __init__(self, path):
@@ -10,7 +13,7 @@ class main:
         files = send_info_data(self.path)
         data = files.get_data()
         data = json.loads(data)
-        publisher = KafkaPublisher(bootstrap_servers=["localhost:9092"], serializer="json")
+        publisher = KafkaPublisher(bootstrap_servers=[os.getenv("LOCAL_HOST")], serializer="json")
         for item in data:
             publisher.publish("File_data", item)
             print(item)
@@ -25,4 +28,4 @@ class main:
 
 
 if __name__ == "__main__":
-    main("C:/podcasts").run()
+    main(os.getenv("PATH_FILE")).run()
