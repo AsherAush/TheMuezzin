@@ -21,6 +21,7 @@ class main:
 
 
     def run(self):
+
         for message in self.consumer:
             data = message.value.decode("utf-8")
             prep = preparationData(data)

@@ -1,10 +1,21 @@
 from elasticsearch import Elasticsearch
+from Logger_file import Logger
+
+logger = Logger.get_logger()
 
 
 class Elastic:
     def __init__(self, host, index_name):
-        self.client = Elasticsearch(hosts=host)
-        self.index = index_name
+        try:
+            self.client = Elasticsearch(hosts=host)
+            self.index = index_name
+            logger.info("The muazin started")
+        except Exception as e:
+            logger.error(f"Error connecting to Elasticsearch:")
+            print(f"Error connecting  Elasticsearch: {e}")
+
+
+
 
 
 

@@ -33,4 +33,3 @@ class send_info_data:
 #     sender = send_info_data(my_path)
 #     data = sender.get_data()
 #     print(data)
-

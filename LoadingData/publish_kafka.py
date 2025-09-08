@@ -1,18 +1,20 @@
 from Receiving_data import send_info_data
 from kafka import KafkaProducer
-
 import json
 
 
 
 class KafkaPublisher:
     def __init__(self, bootstrap_servers: list[str], serializer: str = "json"):
-        self.bootstrap_servers = bootstrap_servers
-        self.serializer = lambda v: json.dumps(v).encode("utf-8")
-        self.producer = KafkaProducer(
-            bootstrap_servers=self.bootstrap_servers,
-            value_serializer=self.serializer,
-        )
+        try:
+            self.bootstrap_servers = bootstrap_servers
+            self.serializer = lambda v: json.dumps(v).encode("utf-8")
+            self.producer = KafkaProducer(
+                bootstrap_servers=self.bootstrap_servers,
+                value_serializer=self.serializer,
+            )
+        except Exception as e:
+            print(f"Error KafkaPublisher: {e}")
 
     def publish(self, topic: str, message):
         future = self.producer.send(
