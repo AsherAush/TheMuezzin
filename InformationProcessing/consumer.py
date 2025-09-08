@@ -16,12 +16,6 @@ class KafkaSubscriber:
 
         )
 
-        print(consumer.topics())
-        for message in consumer:
-            print(f"[KafkaSubscriber] Received message: {message.value.decode('utf-8')}")
-            print(f"partition: {message.partition}, offset: {message.offset}")
+        return consumer
 
 
-
-a = KafkaSubscriber(os.getenv("TOPIC"), os.getenv("LOCAL_HOST"))
-a.subscribe()
