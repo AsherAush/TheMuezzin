@@ -3,13 +3,13 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-class KafkaSubscriber:
+class KafkaRetrieval:
     def __init__(self, topic, bootstrap_servers):
         self.topic = topic
         self.bootstrap_servers = bootstrap_servers
 
 
-    def subscribe(self):
+    def retrieval(self):
         consumer = KafkaConsumer(
             self.topic , # השם של הנושא (topic)
             bootstrap_servers= self.bootstrap_servers
