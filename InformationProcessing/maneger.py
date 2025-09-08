@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from consumer import KafkaRetrieval
 from Data_preparation import preparationData
 from ElasticDal import Elastic
+from MongoDal import Mongo
 load_dotenv()
 
 class main:
@@ -14,6 +15,9 @@ class main:
         # Connect to ElasticSearch
         self.es = Elastic(os.getenv("ELASTICSEARCH_URL"), os.getenv("ELASTIC_INDEX"))
         self.es.create_index()
+        # Connect to MongoDB
+        self.mongo = Mongo(os.getenv("MONGO_URL"), os.getenv("DB_NAME"))
+
 
 
     def run(self):
@@ -21,10 +25,15 @@ class main:
             data = message.value.decode("utf-8")
             prep = preparationData(data)
             prep.create_id()
-            new_data = prep.data_to_elastic()
-            print(len(new_data))
-            self.es.insert_document(new_data)
-            print(type(new_data))
+
+            elastic_db = prep.data_to_elastic()
+            self.es.insert_document(elastic_db)
+
+            mondo_db = prep.data_to_mongo()
+            self.mongo.upload_wav(mondo_db["full_path"], mondo_db["_id"])
+
+
+
 
 
 
