@@ -2,12 +2,16 @@ import logging
 from elasticsearch import Elasticsearch
 from datetime import datetime
 import os
+
+ES_HOST =os.getenv("ELASTICSEARCH_URL"),
+INDEX=os.getenv("LOGGER_NAME"),
+
 class Logger:
     _logger = None
     @classmethod
     def get_logger(cls, name="your_logger_name",
-                   es_host=os.getenv("ELASTICSEARCH_URL"),
-                   index=os.getenv("LOGGER_NAME"),
+                   es_host = ES_HOST,
+                   index = INDEX,
                    level=logging.DEBUG):
         if cls._logger:
             return cls._logger

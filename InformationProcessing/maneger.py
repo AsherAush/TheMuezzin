@@ -8,7 +8,6 @@ load_dotenv()
 
 class main:
     def __init__(self):
-        pass
         # A Kafka drawing
         self.retrieval = KafkaRetrieval(os.getenv("TOPIC"), os.getenv("LOCAL_HOST"))
         self.consumer = self.retrieval.retrieval()

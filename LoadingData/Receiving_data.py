@@ -1,13 +1,21 @@
 from pathlib import Path
 import json
+from dotenv import load_dotenv
+load_dotenv()
 import os
 # my_path = Path("C:\podcasts")
-
+import LoggerFile
+logger = LoggerFile.Logger.get_logger()
 
 class send_info_data:
     def __init__(self, path):
-        self.path = Path(path)
-        self.files = [x for x in self.path.iterdir() if x.is_file()]
+        try:
+            self.path = Path(path)
+            self.files = [x for x in self.path.iterdir() if x.is_file()]
+            logger.info(f"Found {len(self.files)} files in {self.path}")
+        except Exception as e:
+            logger.error(f"Error in send_info_data initialization: {e}")
+            print(f"Error in send_info_data initialization: {e}")
 
     def get_data(self):
         data = []

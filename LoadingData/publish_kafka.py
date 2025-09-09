@@ -1,6 +1,10 @@
 from Receiving_data import send_info_data
 from kafka import KafkaProducer
 import json
+from dotenv import load_dotenv
+load_dotenv()
+import LoggerFile
+logger = LoggerFile.Logger.get_logger()
 
 
 
@@ -9,12 +13,16 @@ class KafkaPublisher:
         try:
             self.bootstrap_servers = bootstrap_servers
             self.serializer = lambda v: json.dumps(v).encode("utf-8")
+            logger.info("Connected to Kafka Publisher")
             self.producer = KafkaProducer(
                 bootstrap_servers=self.bootstrap_servers,
                 value_serializer=self.serializer,
             )
+
         except Exception as e:
+            logger.error(f"Error connecting to KafkaPublisher: {e}")
             print(f"Error KafkaPublisher: {e}")
+
 
     def publish(self, topic: str, message):
         future = self.producer.send(
