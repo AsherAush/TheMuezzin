@@ -17,8 +17,8 @@ class preparationData:
         elastic_data = {
             "id" : self.data['_id'],
             "name": self.data["mathdata"].get("name"),
-            "Name suffix": self.data["mathdata"].get("Name suffix"),
-            "file type": self.data["mathdata"].get("file type"),
+            "Name_suffix": self.data["mathdata"].get("Name suffix"),
+            "file_type": self.data["mathdata"].get("file type"),
             "size_MB": self.data["mathdata"].get("size_MB"),
             "creation_time": self.data["mathdata"].get("creation_time"),
             "is_file": self.data["mathdata"].get("is_file"),
