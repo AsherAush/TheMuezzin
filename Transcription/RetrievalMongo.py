@@ -4,6 +4,8 @@ from bson.objectid import ObjectId
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import LoggerFile
+logger = LoggerFile.Logger.get_logger()
 
 class Retrieval_mongo:
     def __init__(self, uri: str, db_name: str):
@@ -11,8 +13,10 @@ class Retrieval_mongo:
             self.client = MongoClient(uri)
             self.db = self.client[db_name]
             self.fs = GridFS(self.db)
+            logger.info("Connected to MongoDB for Retrieval")
         except Exception as e:
-            print(f"Error connecting to MongoDB: {e}")
+            logger.error(f"Error connecting to MongoDB for Retrieval:")
+            print(f"Error connecting to MongoDB for Retrieval: {e}")
 
     def retrieve_file(self):
         print(self.db.list_collection_names())

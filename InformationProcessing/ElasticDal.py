@@ -28,7 +28,7 @@ class Elastic:
         try:
             result = self.client.index(index=self.index, id= doc["id"], document=doc)
             logger.info(f"Document inserted with ID: {result['_id']}")
-            return result["_id"]
+
         except Exception as e:
             logger.error(f"Error inserting document: {e}")
             return None
