@@ -19,6 +19,6 @@ class Mongo:
 
     def upload_wav(self, file_path, fileId):
         with open(file_path, 'rb') as audio_file:
-            file_id = self.fs.put(audio_file, file_id=fileId, content_type='audio/wav')
+            file_id = self.fs.put(audio_file, _id=fileId, content_type='audio/wav')
         return str(file_id)
 

@@ -17,7 +17,7 @@ class Audio_transcription:
     def transcribe(self, item) :
             item = io.BytesIO(item.read())
             with sr.AudioFile(item) as source:
-                audio_data = self.recognizer.record(source, duration=15)
+                audio_data = self.recognizer.record(source)
                 try:
                     text = self.recognizer.recognize_google(audio_data)
                     logger.info("Transcription successful")

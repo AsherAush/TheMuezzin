@@ -6,7 +6,7 @@ class Decoding:
         self.hostile = self.returnHostile()
         self.lassHostile = self.returnLessHostile()
 
-        pass
+
 
 
     def returnHostile(self):
@@ -29,9 +29,9 @@ class Decoding:
         decoded_text = decoded_bytes.decode('utf-8')
         return decoded_text
 
-a= Decoding()
-print(a.decodingHostile())
-print(a.decodingLassHostile())
+# a= Decoding()
+# print(a.decodingHostile())
+# print(a.decodingLassHostile())
 
 
 

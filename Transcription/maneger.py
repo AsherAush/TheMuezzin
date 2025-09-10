@@ -15,7 +15,7 @@ class main:
     def run(self):
         for audio in self.transcription.audio_file.find():
             text = self.transcription.transcribe(audio)
-            id = audio.file_id
+            id = audio._id
             try:
                 self.elastic.update_document(id, text)
                 print(f"Document {id} updated successfully.")
