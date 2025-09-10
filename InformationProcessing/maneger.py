@@ -22,6 +22,7 @@ class main:
     def run(self):
 
         for message in self.consumer:
+            # rerurn json data
             data = message.value.decode("utf-8")
             prep = preparationData(data)
             prep.create_id()

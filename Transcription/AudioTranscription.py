@@ -25,10 +25,3 @@ class Audio_transcription:
                 except sr.RequestError as e:
                     return f"Could not request results; {e}"
 
-# a = Retrieval_mongo(os.getenv("MONGO_URL"), os.getenv("DB_NAME"))
-# asd = a.retrieve_file()
-# # b = AudioTranscription("C:\ASD\download (16)_4.058160781860352_1757232713.3307304.wav")
-# b = Audio_transcription(asd)
-# for audu in b.audio_file.find():
-#     print(b.transcribe(audu))
-#     print(audu.file_id)
